@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export default function Home() {
   return (
-    <main className="dark:bg-black-dark bg-pr flex min-h-screen justify-between p-24">
+    <main className="bg-pr flex min-h-screen justify-between p-24">
       <Button variant="primary" label="Button Primary" />
       <Button variant="primary" label="Button Primary" disabled />
       <Button variant="primary" label="Button Primary" loading disabled />

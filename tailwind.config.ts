@@ -38,6 +38,7 @@ const config: Config = {
         overline: ['10px', { lineHeight: '16px', fontWeight: 400 }],
       },
       colors: {
+        white: '#F1F1F1',
         primary: {
           main: '#FEA700',
           dark: '#A96F00',
