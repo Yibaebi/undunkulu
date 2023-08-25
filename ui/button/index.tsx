@@ -1,9 +1,9 @@
-import React from 'react'
-import clsx from 'clsx'
-import styles from './index.module.scss'
-import { ButtonProps } from './index.types'
-import { CircularLoader } from '../circular-loader'
-import { cva } from 'class-variance-authority'
+import React from 'react';
+import clsx from 'clsx';
+import styles from './index.module.scss';
+import { ButtonProps } from './index.types';
+import { CircularLoader } from '../circular-loader';
+import { cva } from 'class-variance-authority';
 
 const button = cva('button', {
   variants: {
@@ -20,12 +20,16 @@ const button = cva('button', {
   },
   compoundVariants: [
     { intent: 'primary', loading: 'primary', class: 'bg-primary-60 text-white' },
-    { intent: 'secondary', loading: 'secondary', class: 'bg-primary-60 text-white disabled:black-80' },
+    {
+      intent: 'secondary',
+      loading: 'secondary',
+      class: 'bg-primary-60 text-white disabled:black-80',
+    },
   ],
-})
+});
 
 // Button component
-const Button: React.FC<ButtonProps> = props => {
+const Button: React.FC<ButtonProps> = (props) => {
   const {
     customClassName,
     variant = 'primary',
@@ -36,7 +40,7 @@ const Button: React.FC<ButtonProps> = props => {
     label,
     rightIcon,
     ...rest
-  } = props
+  } = props;
 
   // Button Classes
   const className = clsx(
@@ -44,8 +48,8 @@ const Button: React.FC<ButtonProps> = props => {
     styles[variant],
     styles[size],
     disabled && !loading ? 'disabled:bg-neutral-100 disabled:text-black-60' : '',
-    customClassName,
-  )
+    customClassName
+  );
 
   return (
     <button
@@ -64,13 +68,20 @@ const Button: React.FC<ButtonProps> = props => {
       {label}
 
       {loading ? (
-        <CircularLoader customClassName={clsx('stroke-transparent', disabled && 'opacity-50 !text-primary-main/50')} />
+        <CircularLoader
+          customClassName={clsx(
+            'stroke-transparent',
+            disabled && 'opacity-50 !text-primary-main/50'
+          )}
+        />
       ) : (
-        <React.Fragment>{rightIcon && <span className={styles.icon}>{rightIcon}</span>}</React.Fragment>
+        <React.Fragment>
+          {rightIcon && <span className={styles.icon}>{rightIcon}</span>}
+        </React.Fragment>
       )}
     </button>
-  )
-}
+  );
+};
 
-export { Button }
-export * from './index.types'
+export { Button };
+export * from './index.types';
