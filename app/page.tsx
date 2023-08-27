@@ -1,5 +1,5 @@
-import { Button } from '@/ui'
-import Image from 'next/image'
+import { Button } from '@/ui';
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -11,5 +11,5 @@ export default function Home() {
       <Button variant="secondary" label="Button Secondary" disabled />
       <Button variant="secondary" label="Button Secondary" loading disabled />
     </main>
-  )
+  );
 }
