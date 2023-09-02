@@ -6,8 +6,13 @@ import SearchIcon from '@/public/svgs/search-icon.svg';
 import Image from 'next/image';
 
 import profileImage from '@/public/images/profile-image.png';
+import { useSession } from 'next-auth/react';
 
 export const ProfileNavbar = () => {
+  const { data } = useSession();
+  const userImage = data?.user.image || profileImage;
+  const walletAddress = data?.user.wallet_address;
+
   return (
     <nav className="fixed left-0 top-0 z-10 flex h-[85px] w-full items-center justify-between border-b border-[#313131] bg-black-dark px-[3.75rem] text-white">
       <Logo />
@@ -29,9 +34,11 @@ export const ProfileNavbar = () => {
         </span>
 
         <Image
-          src={profileImage}
-          alt="0xb794f5ea..."
-          className="absolute right-0 top-[45%] -translate-y-1/2"
+          src={userImage}
+          alt={String(walletAddress)}
+          width={48}
+          height={48}
+          className="absolute right-0 top-[45%] -translate-y-1/2 rounded-full"
         />
       </div>
     </nav>
