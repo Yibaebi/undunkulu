@@ -12,8 +12,8 @@ const SignInForm = () => {
   const router = useRouter();
 
   const login = async () => {
-    await signIn();
-    router.replace('auth/connect-wallet');
+    await signIn('google', { callbackUrl: '/auth/connect-wallet' })
+    // router.replace('auth/connect-wallet');
   };
 
   return (
