@@ -5,12 +5,23 @@ import { useParams, useSelectedLayoutSegment, useSelectedLayoutSegments } from '
 import { useRouter } from 'next/navigation'
 import React, { useMemo, useState } from 'react'
 import clsx from 'clsx'
+import {useAccount} from 'wagmi';
+import { loadUserSubmissions, addSubmission} from '@/app/api/calls'
+
+//TODO list the user submissions in the blockchain
 
 const ExploreTabs = () => {
   const segment = useSelectedLayoutSegment()
   const segments = useSelectedLayoutSegments()
   const params = useParams()
   const router = useRouter()
+  const {connector, isConnected} = useAccount();
+  //
+  const loadBlockchainData = () =>{
+    if (isConnected) {
+      addSubmission(connector, 'Dummy Person', '12-09-18', '12-09-18')
+    }
+  }
 
   // Users Layou tab items
   const TAB_ITEMS = useMemo(
@@ -47,6 +58,10 @@ const ExploreTabs = () => {
         <Tab.Panels>
           <div className="flex items-center justify-center w-full min-h-[300px]">
             <p>No data available...</p>
+            <button
+            onClick={() => loadBlockchainData()}
+            > Try
+          </button>
           </div>
         </Tab.Panels>
       </Tab.Group>

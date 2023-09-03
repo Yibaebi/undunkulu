@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 
 import Logo from '@/app/logo';
 import { Button } from '@/ui';
@@ -18,7 +18,15 @@ const ConnectWalletForm = () => {
   const { update: updateUserSession } = useSession();
 
   const { open } = useWeb3Modal();
-  const { address } = useAccount();
+  const { address, isConnected } = useAccount();
+
+  useEffect(() => {
+    const isWalletConnected = isConnected;
+    if (isConnected) {
+      updateUserSession({ wallet_address: address });
+      router.replace('/profile/explore');
+    }
+  });
 
   useUpdateEffect(() => {
     const updateUser = async () => {
